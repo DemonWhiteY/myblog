@@ -1,5 +1,5 @@
 ---
-title: cscode 配置unity代码无法自动补全问题的解决
+title: vscode 配置unity代码无法自动补全问题的解决
 date: 2023-04-27 10:07:59
 tags: [Unity2D,环境配置,游戏,C#]
 categories: 
