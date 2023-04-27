@@ -3,13 +3,14 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 欢迎来到 妖孽白's  blog
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: Demon white
 language: en
 timezone: ''
+email: Demonwhiteyhns@gmail.com
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
