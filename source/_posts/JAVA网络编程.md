@@ -110,7 +110,7 @@ dailog是基于JFraem存在的所以我们在实际开发中希望JFrame的位�
 
 ## 自定义你的UI组件
 
-![Alt text](<屏幕截图 2023-12-23 235445.png>)
+![p1.png](https://s2.loli.net/2023/12/24/gzoUHeBYk16ZMrE.png)
 可以看到我们实际要做的游戏中的大多数UI控件都不是JAVA swing直接为我们提供的那些丑不拉级的UI控件，而此时就需要我们封装我们自己的UI控件，这里主要提供两种方法供大家使用。
 
 ### JPanel+Graphics drawimage
