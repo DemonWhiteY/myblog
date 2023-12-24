@@ -147,24 +147,297 @@ this.setBorderPainted(false);
 this.setFocusPainted(false);
 ```
 
-# JAVA多线程
+### 如何更新UI组件
 
-## 线程和进程
+有时候我们的面板上的UI组件会需要更新，这是就需要我们调用以下的三件套来实现更新UI的效果。
 
-## 线程的重写
+```java
+panel.removeAll();
+//重写panel中的组件；
+panel.repaint();
+panel.updateUI();
+```
 
 # JAVA网络编程
 
+然后，应为我们要完成的是联机模式的五子棋嘛，这是就需要我们学习一些网络编程的知识了。
+
 ## TCP协议与UDP协议
+
+### TCP（传输控制协议）
+
+- 连接性： TCP是面向连接的协议，意味着在通信之前需要建立连接，然后进行数据传输，最后释放连接。
+
+- 可靠性： TCP提供可靠的数据传输，确保数据的完整性和顺序性。如果有数据包丢失，TCP会进行重传，以保证所有数据都被正确地接收。
+
+- 流控制和拥塞控制： TCP具有流控制和拥塞控制机制，可以根据网络的状态动态调整数据的传输速率，以防止网络拥塞。
+
+- 适用场景： 适用于对数据完整性要求较高的应用，如文件传输、网页访问、电子邮件等。
+
+### UDP（用户数据报协议）
+
+- 连接性： UDP是无连接的协议，通信双方不需要建立连接即可直接发送数据。
+
+- 可靠性： UDP不提供可靠的数据传输，不保证数据的完整性和顺序性。因此，它更轻量级，但也更容易丢失数据包。
+
+- 流控制和拥塞控制： UDP没有流控制和拥塞控制机制，传输速率由应用程序自己控制。
+
+- 适用场景： 适用于对实时性要求较高、可以容忍少量数据丢失的应用，如音频和视频流传输、在线游戏等。
+
+### 优劣比较
+
+#### TCP的优势
+
+- 数据完整性和顺序性得到保障，适用于对可靠性要求高的应用。
+- 适用于大文件传输，因为可以确保所有数据正确到达。
+
+#### TCP的劣势
+
+- 较高的开销，包括连接的建立和释放。
+- 不适合实时性要求很高的应用，因为连接的建立和拆除都需要一定的时间。
+
+#### UDP的优势
+
+- 低延迟，适用于实时性要求高的应用。
+- 简单、轻量级，适用于简单的数据传输场景。
+
+#### UDP的劣势
+
+- 不提供数据完整性和顺序性的保障，应用需要自行处理丢失数据的情况。
+- 不适合大文件传输，因为无法保证所有数据都正确到达。
+
+因此选择通讯协议时，需要·根据项目的实际情况来选择TCP和UDP协议，如果是对传输实时性要求高的项目，比如大型MMORPG游戏，就需要使用UDP协议来提升用户体验，如果是对于数据传输顺序要求较高，对实时性要求较低，比如五子棋，就可使用TCP通信。
 
 ## Scoket
 
+服务器端
+
+```java
+    package socket.socket1.socket;
+
+import java.io.BufferedReader;
+
+import java.io.BufferedWriter;
+
+import java.io.IOException;
+
+import java.io.InputStreamReader;
+
+import java.net.ServerSocket;
+
+import java.net.Socket;
+
+public class ServerSocketTest {
+
+public static void main(String[] args) {
+
+try {
+
+// 初始化服务端socket并且绑定9999端口
+
+            ServerSocket serverSocket  =new ServerSocket(9999);
+
+            //等待客户端的连接
+
+            Socket socket = serverSocket.accept();
+
+            //获取输入流
+
+            BufferedReader bufferedReader =new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            //读取一行数据
+
+            String str = bufferedReader.readLine();
+
+            //输出打印
+
+            System.out.println(str);
+
+        }catch (IOException e) {
+
+e.printStackTrace();
+
+        }
+
+}
+
+}
+
+```
+
+客户端
+
+```java
+package socket.socket1.socket;
+
+import java.io.BufferedWriter;
+
+import java.io.IOException;
+
+import java.io.OutputStreamWriter;
+
+import java.net.Socket;
+
+public class ClientSocket {
+
+public static void main(String[] args) {
+
+try {
+
+Socket socket =new Socket("localhost",9999);
+
+            BufferedWriter bufferedWriter =new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+            String str="你好，这是我的第一个socket";
+
+            bufferedWriter.write(str);
+
+            //刷新输入流
+
+            bufferedWriter.flush();
+
+            //关闭socket的输出流
+
+            socket.shutdownOutput();
+
+        }catch (IOException e) {
+
+e.printStackTrace();
+
+        }
+
+}
+
+}
+
+
+```
+
+这里要强调一个点就是客户端为什么要调用一个shuttdownOutput()函数,这个函数其实再这里可以替换成socket.close()函数，为什么要调用这两个函数呢，原因就在于socket再执行过程中会形成阻塞，阻塞的函数一个是accept()函数，另一个就是read()函数，以及一切读取的函数，这样代码运行到此处时，如果没有接受到信息，代码就会停在这里不动，直到接收到。
+
+<br>
+那么回过头来看我们的代码，如果我们没有给服务端传输客户端已经关闭的消息，服务端的read 就会接着阻塞在那里，等待客户端传输信息，但此时客户端已经关闭进程了，此时就会抛出一个Connection reset的异常
+
+<br>
+
+我们就可以使用客户端和服务器通讯了，成功以后我们会发现客户端只能传输一条语句，就推出了，这明显和我们的预期不符，所以我们接下来就是要实现客户端和服务器之间的实时通讯
+
+## 利用while(true)接收多条消息
+
+服务端
+
+```java
+package socket.socket1.socket;
+
+import java.io.BufferedReader;
+
+import java.io.BufferedWriter;
+
+import java.io.IOException;
+
+import java.io.InputStreamReader;
+
+import java.net.ServerSocket;
+
+import java.net.Socket;
+
+public class ServerSocketTest {
+
+public static void main(String[] args) {
+
+try {
+
+// 初始化服务端socket并且绑定9999端口
+
+            ServerSocket serverSocket  =new ServerSocket(9999);
+
+            //等待客户端的连接
+
+            Socket socket = serverSocket.accept();
+
+            //获取输入流,并且指定统一的编码格式
+
+            BufferedReader bufferedReader =new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF-8"));
+            //读取一行数据
+            String str;
+            //通过while循环不断读取信息，
+            while ((str = bufferedReader.readLine())!=null){
+
+                System.out.println(str);
+            }
+
+}catch (IOException e) {
+
+e.printStackTrace();
+
+        }
+
+}
+
+```
+
+客户端
+
+```java
+package socket.socket1.socket;
+
+import java.io.*;
+
+import java.net.Socket;
+
+public class ClientSocket {
+
+public static void main(String[] args) {
+
+try {
+
+//初始化一个socket
+
+            Socket socket =new Socket("127.0.0.1",9999);
+
+            //通过socket获取字符流
+
+            BufferedWriter bufferedWriter =new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+            //通过标准输入流获取字符流
+
+            BufferedReader bufferedReader =new BufferedReader(new InputStreamReader(System.in,"UTF-8"));
+
+          while (true){
+
+String str = bufferedReader.readLine();
+
+              bufferedWriter.write(str);
+
+              bufferedWriter.write("\n");
+
+              bufferedWriter.flush();
+
+          }
+
+}catch (IOException e) {
+
+e.printStackTrace();
+
+        }
+
+}
+
+}
+
+
+```
+
+# JAVA多线程
+
+### 双线程即时通讯客户端
+
+我们想，我们的客户端想要无时无刻的和服务器通讯，就需要无时无刻的准备收到服务器的消息，因为我们也不知道服务器到底什么时候给我们发消息。
+
+<br>
+
+而在刚刚的代码中，我们又知道了socket的read会发生阻塞，所以如果我们一只检测服务端传来的消息，我们就被迫阻塞在那个地方，没有办法进行其他操作，怎么办，此时就需要我们使用多线程的知识，构建Receive 和Send两个线程来进行客户端和服务器端之间的实时通讯。
+
 ## 多用户与服务器的连接
 
-# 实现JAVA五子棋
-
-# MVC模型
-
-# 网络系统
-
-# 消息管理器
+当我们的服务器有多位用户时，是不是每一个用户就需要给分配一个线程？因此动态的加载新线程是很有必要的。
