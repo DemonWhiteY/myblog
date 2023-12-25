@@ -5,7 +5,7 @@ tags: JAVA
 ---
 
 
-[TOC]
+<!-- toc -->
 
 项目已上传至github   <https://github.com/DemonWhiteY/Gobang_online>
 
