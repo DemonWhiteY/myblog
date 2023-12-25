@@ -6,9 +6,11 @@ tags: JAVA
 
 # 网络模块
 
+![屏幕截图 2023-12-24 113957.png](https://s2.loli.net/2023/12/25/wYDpmCsSJuFt5Rf.png)
+
 ## 定义Message 类
 
-在我们开发联机五子棋的过程中最大的一个问题是，各种消息太过复杂，对话消息，下棋消息，邀请消息，悔棋消息，将这些消息标准化定义，让服务器能够识别收到的到底是什么消息就很重要。
+在我们开发联机五子棋的过程中最大的一个问题是，各种消息太过复杂，对话消息，下棋消息，邀请消息，悔棋消息，将这些消息标准化定义，让服务器能够识别收到的到底是什么消息就很重要。因此我们专门将定义的Code类，定义了一系列内部编码，当然大家直接用宏定义也可以。
 
 ```java
 import java.io.Serializable;
@@ -16,19 +18,13 @@ import java.util.LinkedList;
 
 public class Message implements Serializable {
     private static final long serialVersionUID = 1L;
-
-
-    public String username;
+   public String username;
     public String content;
     public String time;
-
     public String code;
-
     public boolean color;
-
     public int x,y;
     public int ID;
-
     public LinkedList<user> userlist;
     public Message(String code,int ID,String username)
     {
@@ -37,30 +33,24 @@ public class Message implements Serializable {
         this.username=username;
 
     }
-
     public Message(String code,int ID)
     {
         this.code=code;
         this.ID=ID;
 
     }
-
     public Message(String code, LinkedList<user> userlist)
     {
         this.code=code;
         this.userlist=userlist;
     }
-
     public Message(String code,String username,String content,String time){
         super();
         this.code=code;
         this.username=username;
         this.content=content;
         this.time=time;
-
     }
-
-
     public Message(String code,int x,int y,boolean color){
         super();
         this.code=code;
@@ -68,20 +58,16 @@ public class Message implements Serializable {
         this.y=y;
         this.color=color;
     }
-
     public Message(String code,String username)
     {
         this.code=code;
         this.username=username;
     }
-
     public Message(String code)
     {
         this.code=code;
 
     }
-
-
     public Message()
     {
         super();
@@ -124,6 +110,8 @@ class   Code{
 
 ### 服务端
 
+服务端和客户端的实例和之前的多人群聊系统相差不大，因为咱们的五子棋要设置联机大厅，所以还要储存所有用户的信息，因此服务端的程序也需要储存数据库，ServerModel类读者可以根据自己的需求创建。
+
 ```java
 package gobang;
 
@@ -165,7 +153,11 @@ public class Server {
 
 }
 
+```
 
+服务端线程（其实大家的服务端也可以设计一个服务端的消息管理器，但是我这里就不做演示啦，就把那一大串if-else接到一个函数里就OK）
+
+```java
 class ServerThread extends Thread{
 
     private Socket s;
@@ -259,10 +251,6 @@ class ServerThread extends Thread{
                 }
 //
             }
-
-
-
-
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -341,6 +329,8 @@ public class NET {
 
 ### 客户端发送线程
 
+客户端的发送线程主要的工作就是检测客户端的MessageList,消息队列中是否有待处理的消息（是否为空），一旦有就立刻发送给服务端。
+
 ```java
 package gobang;
 
@@ -386,6 +376,8 @@ public class SendThread extends Thread {
 
 ### 客户端接收线程
 
+接受线程同样只做一件事情，就是接受消息，一旦接收到消息就把它丢给消息管理器处理。
+
 ```java
 package gobang;
 
@@ -429,6 +421,8 @@ public class ReceiveThread extends Thread{
 ```
 
 # 消息管理器
+
+客户端咱们刚才接收到消息后，没有做任何处理，只是调用了一个messageManager里的getMessage()函数，就是丢给，消息管理器，消息管理器就是处理我们接收到的网络消息的，根据接受到1消息完成我们的对应操作。
 
 ```java
 package gobang;
@@ -524,3 +518,5 @@ public class messageManager {
 }
 
 ```
+
+这样我们的联机五子棋的主体内容就做完了！，剩下就是一些UI界面的布置和UI控件的封装和调用了，希望大家都能做出自己的五子棋。
