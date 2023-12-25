@@ -520,3 +520,9 @@ public class messageManager {
 ```
 
 这样我们的联机五子棋的主体内容就做完了！，剩下就是一些UI界面的布置和UI控件的封装和调用了，希望大家都能做出自己的五子棋。
+
+项目已上传至github   <https://github.com/DemonWhiteY/Gobang_online>
+
+百度网盘 链接：<https://pan.baidu.com/s/1c7dflsJ9Q-Scg-0DVgOdkg?pwd=YYDS>
+提取码：YYDS
+--来自百度网盘超级会员V3的分享

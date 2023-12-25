@@ -3,6 +3,39 @@ title: JAVA设计联机五子棋
 date: 2023-12-23 22:49:15
 tags: JAVA 
 ---
+
+项目已上传至github   <https://github.com/DemonWhiteY/Gobang_online>
+
+百度网盘 链接：<https://pan.baidu.com/s/1c7dflsJ9Q-Scg-0DVgOdkg?pwd=YYDS>
+提取码：YYDS
+--来自百度网盘超级会员V3的分享
+
+网盘下载可以看到Server文件夹和Client文件夹，控制台打开 java -jar GObang.jar 注意，要先打开服务端文件，再打开客户端文件，由于是联机游戏，最少需要打开两次客户端才能相互邀请正常游戏。
+
+先来看看游戏最终效果
+![屏幕截图 2023-12-25 205853.png](https://s2.loli.net/2023/12/25/zPb7nTuekA5JQXF.png)
+
+联机大厅具有以下功能：
+
+- 更改用户名字
+- 用户刷新
+- 用户邀请
+- 用户更改服务器IP和端口
+
+<br>
+
+![p1.png](https://s2.loli.net/2023/12/24/gzoUHeBYk16ZMrE.png)
+
+游戏主界面具有以下功能
+
+- 玩家交替下棋，对方回合不得下棋。
+- 玩家点击下棋，拖拽移动
+- 玩家悔棋，最大悔棋次数3
+- 认输
+- 求和，最大求和次数3
+- 显示对战玩家昵称
+- 超时，没人30秒，超时警告，超时3次输掉比赛。
+
 # JAVAGUI设计——swing与awt
 
 在实现JAVA制作的五子棋之前，我们要先来补充一些基础知识，其中第一部分就是JAVA中swing与awt组件的知识
