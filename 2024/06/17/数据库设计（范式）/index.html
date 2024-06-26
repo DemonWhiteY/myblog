@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数据库设计（范式） | 妖孽白's  blog</title><meta name="author" content="Demon white,Demonwhiteyhns@gmail.com"><meta name="copyright" content="Demon white"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="范式存在的意义避免以下情况  数据冗余 各种插入(INSERT),更新(UPDATE),删除(DELETE)异常  一范式（1NF）一范式的满足条件很简单，需要满足每列元素的不可再分性，即一列下面有多组数据的情况。 二范式（2NF）二范式需要在一范式的基础上改进，需要满足非主属性必须完全依赖于主键，不然就另起一张表来实现。  举例存在如下数据库  选课(学号，课号，学分，成绩，姓名)该数据库乍一看">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数据库设计（范式） | 妖孽白's  blog</title><meta name="author" content="Demon white,Demonwhiteyhns@gmail.com"><meta name="copyright" content="Demon white"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="范式存在的意义 避免以下情况  数据冗余 各种插入(INSERT),更新(UPDATE),删除(DELETE)异常  一范式（1NF） 一范式的满足条件很简单，需要满足每列元素的不可再分性，即一列下面有多组数据的情况。 二范式（2NF） 二范式需要在一范式的基础上改进，需要满足非主属性必须完全依赖于主键，不然就另起一张表来实现。  举例 存在如下数据库  选课(学号，课号，学分，成绩，姓名) 该数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库设计（范式）">
 <meta property="og:url" content="http://example.com/2024/06/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%EF%BC%88%E8%8C%83%E5%BC%8F%EF%BC%89/index.html">
 <meta property="og:site_name" content="妖孽白&#39;s  blog">
-<meta property="og:description" content="范式存在的意义避免以下情况  数据冗余 各种插入(INSERT),更新(UPDATE),删除(DELETE)异常  一范式（1NF）一范式的满足条件很简单，需要满足每列元素的不可再分性，即一列下面有多组数据的情况。 二范式（2NF）二范式需要在一范式的基础上改进，需要满足非主属性必须完全依赖于主键，不然就另起一张表来实现。  举例存在如下数据库  选课(学号，课号，学分，成绩，姓名)该数据库乍一看">
+<meta property="og:description" content="范式存在的意义 避免以下情况  数据冗余 各种插入(INSERT),更新(UPDATE),删除(DELETE)异常  一范式（1NF） 一范式的满足条件很简单，需要满足每列元素的不可再分性，即一列下面有多组数据的情况。 二范式（2NF） 二范式需要在一范式的基础上改进，需要满足非主属性必须完全依赖于主键，不然就另起一张表来实现。  举例 存在如下数据库  选课(学号，课号，学分，成绩，姓名) 该数">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img.wxcha.com/m00/b3/6c/f024ebb91ebf9ac92af3142820549868.jpg?down">
 <meta property="article:published_time" content="2024-06-17T07:22:20.000Z">
@@ -160,22 +160,32 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img.wxcha.com/m00/b3/6c/f024ebb91ebf9ac92af3142820549868.jpg?down" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/./background.png')"><nav id="nav"><span id="blog-info"><a href="/" title="妖孽白's  blog"><span class="site-name">妖孽白's  blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">数据库设计（范式）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-06-17T07:22:20.000Z" title="Created 2024-06-17 15:22:20">2024-06-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-06-17T09:02:17.698Z" title="Updated 2024-06-17 17:02:17">2024-06-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数据库设计（范式）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2><span id="范式存在的意义">范式存在的意义</span></h2><p>避免以下情况</p>
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img.wxcha.com/m00/b3/6c/f024ebb91ebf9ac92af3142820549868.jpg?down" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/./background.png')"><nav id="nav"><span id="blog-info"><a href="/" title="妖孽白's  blog"><span class="site-name">妖孽白's  blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">数据库设计（范式）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-06-17T07:22:20.000Z" title="Created 2024-06-17 15:22:20">2024-06-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-06-17T09:02:17.698Z" title="Updated 2024-06-17 17:02:17">2024-06-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数据库设计（范式）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2><span id="范式存在的意义">范式存在的意义</span></h2>
+<p>避免以下情况</p>
 <ul>
 <li>数据冗余</li>
 <li>各种插入(INSERT),更新(UPDATE),删除(DELETE)异常</li>
 </ul>
-<h2><span id="一范式1nf">一范式（1NF）</span></h2><p>一范式的满足条件很简单，需要满足每列元素的不可再分性，即一列下面有多组数据的情况。</p>
-<h2><span id="二范式2nf">二范式（2NF）</span></h2><p>二范式需要在一范式的基础上改进，需要满足非主属性必须完全依赖于主键，不然就另起一张表来实现。</p>
+<h2><span id="一范式1nf">一范式（1NF）</span></h2>
+<p>一范式的满足条件很简单，需要满足每列元素的不可再分性，即一列下面有多组数据的情况。</p>
+<h2><span id="二范式2nf">二范式（2NF）</span></h2>
+<p>二范式需要在一范式的基础上改进，需要满足非主属性必须完全依赖于主键，不然就另起一张表来实现。</p>
 <ul>
-<li>举例<br>存在如下数据库  <em>选课(<u>学号</u>，<u>课号</u>，学分，成绩，姓名)</em><br>该数据库乍一看没什么问题，但是现在课号和学号共同做主键，存在如下函数依赖关系<br> _(学号，课号)–&gt;成绩，学号–&gt;姓名，课号–&gt;学分_。</li>
+<li>举例<br>
+存在如下数据库  <em>选课(<u>学号</u>，<u>课号</u>，学分，成绩，姓名)</em><br>
+该数据库乍一看没什么问题，但是现在课号和学号共同做主键，存在如下函数依赖关系<br>
+<em>(学号，课号)–&gt;成绩，学号–&gt;姓名，课号–&gt;学分</em>。</li>
 </ul>
 <p>这就出现了以下这些问题</p>
 <ul>
-<li>数据冗余<br>同一门课程由n个学生选修，”学分”就重复n-1次；同一个学生选修了m门课程，姓名和年龄就重复了m-1次。</li>
-<li>更新异常<br>若调整了某门课程的学分，数据表中所有行的”学分”值都要更新，否则会出现同一门课程学分不同的情况。</li>
-<li>删除异常<br>假设一批学生已经完成课程的选修，这些选修记录就应该从数据库表中删除。但是，与此同时，课程名称和学分信息也被删除了。很显然，这也会导致插入异常。</li>
-<li>插入异常<br>假设要开设一门新的课程，暂时还没有人选修。这样，由于还没有”学号”关键字，课程名称和学分也无法记录入数据库。</li>
+<li>数据冗余<br>
+同一门课程由n个学生选修，&quot;学分&quot;就重复n-1次；同一个学生选修了m门课程，姓名和年龄就重复了m-1次。</li>
+<li>更新异常<br>
+若调整了某门课程的学分，数据表中所有行的&quot;学分&quot;值都要更新，否则会出现同一门课程学分不同的情况。</li>
+<li>删除异常<br>
+假设一批学生已经完成课程的选修，这些选修记录就应该从数据库表中删除。但是，与此同时，课程名称和学分信息也被删除了。很显然，这也会导致插入异常。</li>
+<li>插入异常<br>
+假设要开设一门新的课程，暂时还没有人选修。这样，由于还没有&quot;学号&quot;关键字，课程名称和学分也无法记录入数据库。</li>
 </ul>
 <p>解决方法当然是增加两张表。</p>
 <ul>
@@ -183,50 +193,68 @@
 <li><em>学生（<u>学号</u>,姓名）</em></li>
 <li><em>课程（<u>课号</u>,学分）</em></li>
 </ul>
-<h2><span id="3nf">3NF</span></h2><p>三范式又需要在二范式的基础上改进，即<strong>属性不依赖于其它非主属性</strong>，不然就另起一张表实现。</p>
+<h2><span id="3nf">3NF</span></h2>
+<p>三范式又需要在二范式的基础上改进，即<strong>属性不依赖于其它非主属性</strong>，不然就另起一张表实现。</p>
 <ul>
-<li>举例<br>存在以下表 <em>（<u>学号</u>，姓名，学院，学院辅导员，学院地址）</em><br>存在以下函数依赖关系<br><em>学号-&gt;姓名，学号-&gt;学院，学院-&gt;辅导员，学院-&gt;学院地址</em></li>
+<li>举例<br>
+存在以下表 <em>（<u>学号</u>，姓名，学院，学院辅导员，学院地址）</em><br>
+存在以下函数依赖关系<br>
+<em>学号-&gt;姓名，学号-&gt;学院，学院-&gt;辅导员，学院-&gt;学院地址</em></li>
 </ul>
 <p>这就导致了相关问题的出现</p>
 <ul>
-<li>数据冗余<br>对于同一学院，有多少学生表中就出现了多少次辅导员和地址，其实是一样的数据。</li>
-<li>更新异常<br>修改某一学院的地址，必须修改所有行地址，否则会出现更新异常。</li>
-<li>删除异常<br>如果删除一批学生，学院也会被删除，此时如果查找该学院，就会发现学院已经没有了。</li>
-<li>插入异常<br>如果要新增学院，因为该学院还没有学生，自然没有主键，因此无法实现。</li>
+<li>数据冗余<br>
+对于同一学院，有多少学生表中就出现了多少次辅导员和地址，其实是一样的数据。</li>
+<li>更新异常<br>
+修改某一学院的地址，必须修改所有行地址，否则会出现更新异常。</li>
+<li>删除异常<br>
+如果删除一批学生，学院也会被删除，此时如果查找该学院，就会发现学院已经没有了。</li>
+<li>插入异常<br>
+如果要新增学院，因为该学院还没有学生，自然没有主键，因此无法实现。</li>
 </ul>
 <p>改进方法：创建学院表</p>
 <ul>
 <li><em>学院（<u>学院编号</u>,学院名称,学院辅导员，学院地址）</em></li>
 <li><em>学生（<u>学号</u>，姓名，学院编号）</em></li>
 </ul>
-<h3><span id="判断是否满足3nf">判断是否满足3NF</span></h3><p>对于每个函数依赖关系 <em>X-&gt;A</em> 都有</p>
+<h3><span id="判断是否满足3nf">判断是否满足3NF</span></h3>
+<p>对于每个函数依赖关系 <em>X-&gt;A</em> 都有</p>
 <ul>
 <li>X是key</li>
 <li>A是key的一部分</li>
 </ul>
-<h3><span id="3nf的分解算法">3NF的分解算法</span></h3><ul>
-<li>【例】关系模型R&lt;U，F&gt;，U&#x3D;{A，B，C，D，E}，F&#x3D;{A→BC，ABD→CE，E→D}<ul>
-<li>首先计算出F的最小依赖集，得到F’&#x3D;{A→BC，AD→E，E→D}。</li>
+<h3><span id="3nf的分解算法">3NF的分解算法</span></h3>
+<ul>
+<li>【例】关系模型R&lt;U，F&gt;，U={A，B，C，D，E}，F={A→BC，ABD→CE，E→D}
+<ul>
+<li>首先计算出F的最小依赖集，得到F’={A→BC，AD→E，E→D}。</li>
 <li>观察U中是否有属性不在F’中的出现，如果有，则这几个属性组成一对关系R,并在原来的U中删除这些属性。而例子中U中的属性都出现在F中，则可以跳过这一步。</li>
-<li>对F’中的函数依赖，把左边的相同分为一组，一组中出现的所有属性为一个关系。如F&#x3D;{A→B，A→C，……}，左边都为A的分为一组，出项的所有属性组为一个关系R{A，B，C，……}。例题中左边都不相同，所以一个函数依赖组为一个关系得到转化为3NF的保持依赖分解R1{A,B,C}，R2{A,D,E}，R3{E,D}。</li>
+<li>对F’中的函数依赖，把左边的相同分为一组，一组中出现的所有属性为一个关系。如F={A→B，A→C，……}，左边都为A的分为一组，出项的所有属性组为一个关系R{A，B，C，……}。例题中左边都不相同，所以一个函数依赖组为一个关系得到转化为3NF的保持依赖分解R1{A,B,C}，R2{A,D,E}，R3{E,D}。</li>
 </ul>
 </li>
 </ul>
-<h3><span id="保持无损分解的算法">保持无损分解的算法</span></h3><ul>
+<h3><span id="保持无损分解的算法">保持无损分解的算法</span></h3>
+<ul>
 <li>先将R转化3NF的保持函数依赖的分解，由算法一得出R1{A,B,C}，R2{A,D,E}，R3{E,D}。</li>
 <li>求出F的key,得到key为AD,AE</li>
 <li>将候选码单独组成关系得R4{A,D}和R5{A,E}，然后与保持函数依赖后的分解取并集。得R1{A,B,C}，R2{A,D,E}，R3{E,D}，R4{A,D}，R5{A,E}。</li>
 <li>观察新组成的分解模式中，是否存在包含关系，有则去掉被包含的。如R3{E,D}，R4{A,D}，R5{A,E}都包含于R2{A,D,E}，则删去，最终得到转化3NF的既有无损连接性又保持函数依赖的分解R1{A,B,C}，R2{A,D,E}。</li>
 </ul>
-<h2><span id="bcnf">BCNF</span></h2><h3><span id="判断是否满足bcnf">判断是否满足BCNF</span></h3><p>如果关系模式R∈1NF，且所有的函数依赖X-&gt;Y，决定因素X都包含了R的一个候选键，则称R属于BC范式。</p>
-<h3><span id="bcnf的分解">BCNF的分解</span></h3><ul>
+<h2><span id="bcnf">BCNF</span></h2>
+<h3><span id="判断是否满足bcnf">判断是否满足BCNF</span></h3>
+<p>如果关系模式R∈1NF，且所有的函数依赖X-&gt;Y，决定因素X都包含了R的一个候选键，则称R属于BC范式。</p>
+<h3><span id="bcnf的分解">BCNF的分解</span></h3>
+<ul>
 <li>把满足BCNF的函数依赖划为一个表</li>
 <li>把不满足BCNF的函数依赖化为另一个表</li>
 <li>继续分解不满足BCNF的函数依赖的表</li>
 </ul>
-<h2><span id="4nf">4NF</span></h2><p>第四范式（4NF）满足BCNF，要求主关键字信息和非主关键字信息不能有一对多关系。</p>
+<h2><span id="4nf">4NF</span></h2>
+<p>第四范式（4NF）满足BCNF，要求主关键字信息和非主关键字信息不能有一对多关系。</p>
 <ul>
-<li>举例<br>存在以下表 <em>学生（<u>学号</u>，姓名，电话号码）</em><br>出现以下数据</li>
+<li>举例<br>
+存在以下表 <em>学生（<u>学号</u>，姓名，电话号码）</em><br>
+出现以下数据</li>
 </ul>
 <table>
 <thead>
@@ -236,7 +264,8 @@
 <th>电话号</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>2212043</td>
 <td>小白</td>
 <td>18835008888</td>
@@ -251,14 +280,16 @@
 <td>小白</td>
 <td>18835007777</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>很明显上面的数据表中出现了冗余 ，而且也会有相应的异常，那么如何解决呢，</p>
 <p>当然是只要存在一对多关系就另外开创表啦</p>
 <ul>
 <li><em>（学生，姓名）</em></li>
 <li><em>（学生，电话号）</em></li>
 </ul>
-<h3><span id="多值函数依赖">多值函数依赖</span></h3><p>设R(U)是属性集U上的一个关系模式。X，Y，Z是U的子集,并且Z&#x3D;U-X-Y。关系模式R(U)中多值依赖X→→Y成立，当且仅当对R(U)的任一关系r,给定的一对(x，z)值有一组Y的值，这组值仅仅决定于x值而与z值无关。</p>
+<h3><span id="多值函数依赖">多值函数依赖</span></h3>
+<p>设R(U)是属性集U上的一个关系模式。X，Y，Z是U的子集,并且Z=U-X-Y。关系模式R(U)中多值依赖X→→Y成立，当且仅当对R(U)的任一关系r,给定的一对(x，z)值有一组Y的值，这组值仅仅决定于x值而与z值无关。</p>
 <ul>
 <li>tips 多值函数依赖不会单独出现 ，X-&gt;-&gt;Y,X-&gt;-&gt;Z</li>
 </ul>
